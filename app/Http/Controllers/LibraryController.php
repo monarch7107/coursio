@@ -1,7 +1,10 @@
 <?php
-namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
+namespace App\\Http\\Controllers;
+
+use Illuminate\\Http\\Request;
+use Illuminate\\Http\\JsonResponse;
+use Illuminate\\View\\View;
+
 class LibraryController extends Controller
 {
     private function resources(): array
@@ -27,6 +30,12 @@ class LibraryController extends Controller
             ['title'=>'Odoo Documentation','provider'=>'Odoo','category'=>'Business Technology','level'=>'Intermediate','type'=>'Free learning; no certificate','description'=>'Documentation for ERP systems, business workflows, modules, and integrations.','url'=>'https://www.odoo.com/documentation','tags'=>'ERP Business Python'],
         ];
     }
+
+    public function health(): JsonResponse
+    {
+        return response()->json(['status' => 'ok', 'app' => 'Coursio']);
+    }
+
     public function index(Request $request): View
     {
         $all = collect($this->resources());
